@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
  * @author DELL
  */
 public class Main extends javax.swing.JFrame {
-    Connection con=null;
+    Connection con = null;
     ResultSet rs = null;
     PreparedStatement pst = null;
 
@@ -48,17 +48,17 @@ public class Main extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
+        professional = new javax.swing.JButton();
+        lesson = new javax.swing.JButton();
+        help = new javax.swing.JButton();
+        about = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        t = new javax.swing.JTextField();
-        jButton11 = new javax.swing.JButton();
+        newMember = new javax.swing.JButton();
+        payent = new javax.swing.JButton();
+        membership = new javax.swing.JButton();
+        locker = new javax.swing.JButton();
+        searchBar = new javax.swing.JTextField();
+        search = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -114,35 +114,35 @@ public class Main extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(0, 0, 51));
 
-        jButton5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton5.setText("Professional");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        professional.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        professional.setText("Professional");
+        professional.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                professionalActionPerformed(evt);
             }
         });
 
-        jButton6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton6.setText("Lesson");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        lesson.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lesson.setText("Lesson");
+        lesson.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                lessonActionPerformed(evt);
             }
         });
 
-        jButton7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton7.setText("Help");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        help.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        help.setText("Help");
+        help.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                helpActionPerformed(evt);
             }
         });
 
-        jButton8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton8.setText("About");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        about.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        about.setText("About");
+        about.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                aboutActionPerformed(evt);
             }
         });
 
@@ -153,73 +153,73 @@ public class Main extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(about, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(professional, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
+                    .addComponent(lesson, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(help, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(46, 46, 46)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(professional, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lesson, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(help, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(about, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel5.setBackground(new java.awt.Color(0, 0, 51));
         jPanel5.setPreferredSize(new java.awt.Dimension(174, 428));
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton1.setText("New Member");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        newMember.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        newMember.setText("New Member");
+        newMember.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                newMemberActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton2.setText("Payment");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        payent.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        payent.setText("Payment");
+        payent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                payentActionPerformed(evt);
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton3.setText("Membership");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        membership.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        membership.setText("Membership");
+        membership.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                membershipActionPerformed(evt);
             }
         });
 
-        jButton4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton4.setText("Locker");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        locker.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        locker.setText("Locker");
+        locker.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                lockerActionPerformed(evt);
             }
         });
 
-        t.addActionListener(new java.awt.event.ActionListener() {
+        searchBar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tActionPerformed(evt);
+                searchBarActionPerformed(evt);
             }
         });
-        t.addKeyListener(new java.awt.event.KeyAdapter() {
+        searchBar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                tKeyReleased(evt);
+                searchBarKeyReleased(evt);
             }
         });
 
-        jButton11.setText("Search");
+        search.setText("Search");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -228,14 +228,14 @@ public class Main extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(newMember, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(locker, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(membership, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(payent, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(t, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(searchBar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton11)
+                        .addComponent(search)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -244,16 +244,16 @@ public class Main extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(t, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton11))
+                    .addComponent(searchBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(search))
                 .addGap(29, 29, 29)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(newMember, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(payent, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(membership, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(locker, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(313, Short.MAX_VALUE))
         );
 
@@ -301,6 +301,7 @@ public class Main extends javax.swing.JFrame {
 
         jMenu4.setText("Users");
 
+        jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem4.setText("Registration");
         jMenuItem4.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -330,6 +331,7 @@ public class Main extends javax.swing.JFrame {
         });
         jMenu4.add(jMenuItem6);
 
+        jMenuItem12.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem12.setText("Log Out");
         jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -369,6 +371,7 @@ public class Main extends javax.swing.JFrame {
         });
         jMenu5.add(jMenuItem11);
 
+        jMenuItem10.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem10.setText("Payment");
         jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -441,178 +444,181 @@ public class Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-    About obj = new About();
-    obj.setVisible(true);// TODO add your handling code here:
+        About obj = new About();
+        obj.setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-Contact obj = new Contact();
-obj.setVisible(true);// TODO add your handling code here:
+        Contact obj = new Contact();
+        obj.setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
 
         dispose();
         Main obj = new Main();
-obj.setVisible(true);// TODO add your handling code here:
+        obj.setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_jMenu3ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-Members obj  =new Members();
-obj.setVisible(true);// TODO add your handling code here:
+        Members obj  =new Members();
+        obj.setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-PasswordChange obj = new PasswordChange();
-obj.setVisible(true);// TODO add your handling code here:
+        PasswordChange obj = new PasswordChange();
+        obj.setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-LoginDetails obj = new LoginDetails();
-obj.setVisible(true);
+        LoginDetails obj = new LoginDetails();
+        obj.setVisible(true);
 // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-Rent obj = new Rent();
-obj.setVisible(true);// TODO add your handling code here:
+        Rent obj = new Rent();
+        obj.setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-Member_Locker obj  = new Member_Locker();
-obj.setVisible(true);// TODO add your handling code here:
+        Member_Locker obj  = new Member_Locker();
+        obj.setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
-Professionals obj = new Professionals();
-obj.setVisible(true);// TODO add your handling code here:
+        Professionals obj = new Professionals();
+        obj.setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
-Payment obj = new Payment();
-obj.setVisible(true);// TODO add your handling code here:
+        Payment obj = new Payment();
+        obj.setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     private void jMenuItem4StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jMenuItem4StateChanged
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem4StateChanged
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-MemberLesson obj =new MemberLesson(); 
-obj.setVisible(true);// TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
+    private void lessonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lessonActionPerformed
+        MemberLesson obj =new MemberLesson(); 
+        obj.setVisible(true);// TODO add your handling code here:
+    }//GEN-LAST:event_lessonActionPerformed
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
-MemberLesson obj  = new MemberLesson();
-obj.setVisible(true);// TODO add your handling code here:
+        MemberLesson obj  = new MemberLesson();
+        obj.setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem11ActionPerformed
 
-    private void tActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tActionPerformed
+    private void searchBarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tActionPerformed
+    }//GEN-LAST:event_searchBarActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-Payment obj = new Payment();
-obj.setVisible(true);// TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void payentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payentActionPerformed
+        Payment obj = new Payment();
+        obj.setVisible(true);// TODO add your handling code here:
+    }//GEN-LAST:event_payentActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-Professionals obj =new Professionals();
-obj.setVisible(true);
+    private void professionalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_professionalActionPerformed
+        Professionals obj =new Professionals();
+        obj.setVisible(true);
 // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_professionalActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-     Contact obj =new Contact();
-obj.setVisible(true) ;  // TODO add your handling code here:
-    }//GEN-LAST:event_jButton7ActionPerformed
+    private void helpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_helpActionPerformed
+        Contact obj =new Contact();
+        obj.setVisible(true) ;  // TODO add your handling code here:
+    }//GEN-LAST:event_helpActionPerformed
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
- About obj =new About();
-obj.setVisible(true) ;         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton8ActionPerformed
+    private void aboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutActionPerformed
+        About obj =new About();
+        obj.setVisible(true) ;         // TODO add your handling code here:
+    }//GEN-LAST:event_aboutActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
- Member_Locker obj =new Member_Locker();
-obj.setVisible(true) ;         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void lockerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lockerActionPerformed
+        Member_Locker obj =new Member_Locker();
+        obj.setVisible(true) ;         // TODO add your handling code here:
+    }//GEN-LAST:event_lockerActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
- MembershipType obj =new MembershipType();
-obj.setVisible(true) ;         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void membershipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_membershipActionPerformed
+        MembershipType obj =new MembershipType();
+        obj.setVisible(true) ;         // TODO add your handling code here:
+    }//GEN-LAST:event_membershipActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
- Members obj =new Members();
-obj.setVisible(true) ;         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void newMemberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newMemberActionPerformed
+        Members obj =new Members();
+        obj.setVisible(true) ;         // TODO add your handling code here:
+    }//GEN-LAST:event_newMemberActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-Registration obj = new Registration();
-obj.setVisible(true);// TODO add your handling code here:
+        Registration obj = new Registration();
+        obj.setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
-    private void tKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tKeyReleased
-try{
+    private void searchBarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchBarKeyReleased
+
+        try{
+            
+            String sql = "select * from members where First_Name = ?";
+            pst = con.prepareStatement(sql);
+            pst.setString(1,searchBar.getText());
+            rs= pst.executeQuery();
+            if(rs.next()){
+                Members obj =new  Members();
+                obj.setVisible(true);
+                String add1 = rs.getString("First_Name");
+                obj.fname.setText(add1);
+                String add2 = rs.getString("id");
+                obj.id.setText(add2);
+                String add3 = rs.getString("Last_Name");
+                obj.lname.setText(add3);
+                String add4 = rs.getString("nid");
+                obj.mnid.setText(add4);
+                String add5 = rs.getString("email");
+                obj.email.setText(add5);
+                String add6 = rs.getString("address");
+                obj.maddress.setText(add6);
+                String add7 = rs.getString("phone");
+                obj.contact.setText(add7);
+        
+                }
+            else{
+                String sql2 = "select * from members where id = ?";
+                pst = con.prepareStatement(sql2);
+                pst.setString(1,searchBar.getText());
+                rs= pst.executeQuery();
+                
     
-    String sql = "select * from members where First_Name = ?";
-    pst = con.prepareStatement(sql);
-    pst.setString(1,t.getText());
-    rs= pst.executeQuery();
-    if(rs.next()){
-        Members obj =new  Members();
-        obj.setVisible(true);
-        String add1 = rs.getString("First_Name");
-        obj.fname.setText(add1);
-        String add2 = rs.getString("id");
-        obj.id.setText(add2);
-        String add3 = rs.getString("Last_Name");
-        obj.lname.setText(add3);
-        String add4 = rs.getString("nid");
-        obj.mnid.setText(add4);
-        String add5 = rs.getString("email");
-        obj.email.setText(add5);
-        String add6 = rs.getString("address");
-        obj.maddress.setText(add6);
-        String add7 = rs.getString("phone");
-        obj.contact.setText(add7);
+                if(rs.next()){
+                    Members obj =new  Members();
+                    obj.setVisible(true);
+                    String add1 = rs.getString("First_Name");
+                    obj.fname.setText(add1);
+                    String add2 = rs.getString("id");
+                    obj.id.setText(add2);
+                    String add3 = rs.getString("Last_Name");
+                    obj.lname.setText(add3);
+                    String add4 = rs.getString("nid");
+                    obj.mnid.setText(add4);
+                    String add5 = rs.getString("email");
+                    obj.email.setText(add5);
+                    String add6 = rs.getString("address");
+                    obj.maddress.setText(add6);
+                    String add7 = rs.getString("phone");
+                    obj.contact.setText(add7);
+                }                      
         
-    }
-    else{
-    String sql2 = "select * from members where id = ?";
-    pst = con.prepareStatement(sql2);
-    pst.setString(1,t.getText());
-    rs= pst.executeQuery();
-    if(rs.next()){
-        Members obj =new  Members();
-        obj.setVisible(true);
-        String add1 = rs.getString("First_Name");
-        obj.fname.setText(add1);
-        String add2 = rs.getString("id");
-        obj.id.setText(add2);
-        String add3 = rs.getString("Last_Name");
-        obj.lname.setText(add3);
-        String add4 = rs.getString("nid");
-        obj.mnid.setText(add4);
-        String add5 = rs.getString("email");
-        obj.email.setText(add5);
-        String add6 = rs.getString("address");
-        obj.maddress.setText(add6);
-        String add7 = rs.getString("phone");
-        obj.contact.setText(add7);
-    }
-        
-    }
-}
-catch(Exception e){
-    JOptionPane.showMessageDialog(null,e);
-}
-    }//GEN-LAST:event_tKeyReleased
+                }
+            }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }
+    }//GEN-LAST:event_searchBarKeyReleased
 
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
-Login obj = new Login();
-dispose();
-obj.setVisible(true);// TODO add your handling code here:
+        Login obj = new Login();
+        dispose();
+        obj.setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
     /**
@@ -651,15 +657,8 @@ obj.setVisible(true);// TODO add your handling code here:
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
+    private javax.swing.JButton about;
+    private javax.swing.JButton help;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
@@ -689,6 +688,13 @@ obj.setVisible(true);// TODO add your handling code here:
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JTextField t;
+    private javax.swing.JButton lesson;
+    private javax.swing.JButton locker;
+    private javax.swing.JButton membership;
+    private javax.swing.JButton newMember;
+    private javax.swing.JButton payent;
+    private javax.swing.JButton professional;
+    private javax.swing.JButton search;
+    private javax.swing.JTextField searchBar;
     // End of variables declaration//GEN-END:variables
 }

@@ -105,12 +105,12 @@ try{
                 dispose();
                 frm.setVisible(true);
                 String add1=rs.getString("Id");
-                frm.i.setText(add1);
+                frm.id.setText(add1);
                 String add2=rs.getString("totalPay");
-                frm.p.setText(add2);
+                frm.payable.setText(add2);
                 
                 String add7=rs.getString("Status");
-                frm.s.setSelectedItem(add7);
+                frm.status.setSelectedItem(add7);
                 
                 
                 

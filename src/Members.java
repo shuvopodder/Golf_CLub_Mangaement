@@ -357,11 +357,11 @@ public class Members extends javax.swing.JFrame {
     }//GEN-LAST:event_othersActionPerformed
 
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
-try{
+        try{
             con=Connect.ConnectDB();
             String sql= "update members set Last_Name='"+ lname.getText() +"',First_Name='"+ fname.getText()  +"',Email='"+ email.getText() + "',Phone='"+ contact.getText() + "',mtype='" + type.getSelectedItem()+ "',gender='" + gender.getSelectedItem() + "',blood='"+ blood.getSelectedItem() + "',date='" + mdate.getText() + "',Address='" + maddress.getText() + "' where Id='" + id.getText() + "'";
 
-           pst=con.prepareStatement(sql);
+            pst=con.prepareStatement(sql);
             pst.execute();
             JOptionPane.showMessageDialog(this,"Successfully updated","Member Record",JOptionPane.INFORMATION_MESSAGE);
             update.setEnabled(false);
@@ -372,7 +372,7 @@ try{
     }//GEN-LAST:event_updateActionPerformed
 
     private void createActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createActionPerformed
-Reset();      // TODO add your handling code here:
+        Reset();      // TODO add your handling code here:
     }//GEN-LAST:event_createActionPerformed
 
     private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
@@ -403,15 +403,16 @@ Reset();      // TODO add your handling code here:
                 return;
             }
          
-   Statement stmt;
-       stmt= con.createStatement();
-       String sql1="Select Id from members where Id= '" + id.getText() + "'";
-      rs=stmt.executeQuery(sql1);
-      if(rs.next()){
-        JOptionPane.showMessageDialog( this, "Member ID already exists","Error", JOptionPane.ERROR_MESSAGE);
-        id.setText("");
-        id.requestDefaultFocus();
-       return;
+           Statement stmt;
+           stmt= con.createStatement();
+           String sql="Select Id from members where Id= '" + id.getText() + "'";
+           rs=stmt.executeQuery(sql);
+           
+           if(rs.next()){
+               JOptionPane.showMessageDialog( this, "Member ID already exists","Error", JOptionPane.ERROR_MESSAGE);
+               id.setText("");
+               id.requestDefaultFocus();
+               return;
       }
       int a ;
       if(type.getSelectedItem()=="Premium")
@@ -427,13 +428,13 @@ Reset();      // TODO add your handling code here:
           a=20000;
       }
       
-            String sql= "insert into members(Id,First_Name,Last_Name,Email,Phone,nid,gender,blood,date,Address)values('"+ id.getText() + "','"+ fname.getText() + "','"+ lname.getText() + "','"+ email.getText() + "','"+ contact.getText() + "','" +mnid.getText()+"','"+ gender.getSelectedItem() + "','"+ blood.getSelectedItem() + "','" + mdate.getText() + "','" + maddress.getText() + "')";
-
-            pst=con.prepareStatement(sql);
-            pst.execute();
-            String sql2= "insert into payrecord(Id,totalpay)values('"+ id.getText() + "','"+ a + "')";
+            String sql2= "insert into members(Id,First_Name,Last_Name,Email,Phone,nid,gender,blood,date,Address)values('"+ id.getText() + "','"+ fname.getText() + "','"+ lname.getText() + "','"+ email.getText() + "','"+ contact.getText() + "','" +mnid.getText()+"','"+ gender.getSelectedItem() + "','"+ blood.getSelectedItem() + "','" + mdate.getText() + "','" + maddress.getText() + "')";
 
             pst=con.prepareStatement(sql2);
+            pst.execute();
+            String sql3= "insert into payrecord(Id,totalpay)values('"+ id.getText() + "','"+ a + "')";
+
+            pst=con.prepareStatement(sql3);
             pst.execute();
             JOptionPane.showMessageDialog(this,"Successfully saved","Members Record",JOptionPane.INFORMATION_MESSAGE);
             save.setEnabled(false);
@@ -562,19 +563,17 @@ try{
 
     private void Reset() {
         id.setText("");
-    fname.setText("");
-    lname.setText("");
-    contact.setText("");
-    maddress.setText("");
-    
-    email.setText("");
-    
-    mdate.setText("");
-    blood.setSelectedIndex(-1);
-    gender.setSelectedIndex(-1);
-    save.setEnabled(true);
-    update.setEnabled(false);
-    delete.setEnabled(false);
-    id.requestDefaultFocus();
+        fname.setText("");
+        lname.setText("");
+        contact.setText("");
+        maddress.setText("");    
+        email.setText("");    
+        mdate.setText("");
+        blood.setSelectedIndex(-1);
+        gender.setSelectedIndex(-1);
+        save.setEnabled(true);
+        update.setEnabled(false);
+        delete.setEnabled(false);
+        id.requestDefaultFocus();
     }
 }

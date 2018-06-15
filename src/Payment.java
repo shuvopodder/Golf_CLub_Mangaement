@@ -17,6 +17,7 @@ import net.proteanit.sql.DbUtils;
  * @author DELL
  */
 public class Payment extends javax.swing.JFrame {
+    
     Connection con = null;
     ResultSet rs = null;
     PreparedStatement pst = null;
@@ -32,10 +33,10 @@ public class Payment extends javax.swing.JFrame {
     }
      private void Get_Data(){
      
-String sql = "select id as 'ID',totalpay as 'Payable',status as 'Status' from payrecord order by id";
-try{
+         String sql = "select id as 'ID',name as 'Name',totalpay as 'Payable',status as 'Status' from payrecord order by id";
+         try{
          pst=con.prepareStatement(sql);
-          rs= pst.executeQuery();
+         rs= pst.executeQuery();
          table4.setModel(DbUtils.resultSetToTableModel(rs));
          }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
@@ -55,21 +56,21 @@ try{
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        i = new javax.swing.JTextField();
-        p = new javax.swing.JTextField();
+        method = new javax.swing.JComboBox<>();
+        id = new javax.swing.JTextField();
+        payable = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        s = new javax.swing.JComboBox<>();
+        status = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        card = new javax.swing.JTextField();
+        cardNo = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        t = new javax.swing.JComboBox<>();
+        cardType = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
-        e = new javax.swing.JTextField();
+        cvc = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        v = new javax.swing.JTextField();
+        validDate = new javax.swing.JTextField();
         pay = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -90,10 +91,10 @@ try{
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Paying Method");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cash", "Card" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        method.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cash", "Card" }));
+        method.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                methodActionPerformed(evt);
             }
         });
 
@@ -103,7 +104,7 @@ try{
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Status");
 
-        s.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Due", "Paid" }));
+        status.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Due", "Paid" }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -115,7 +116,7 @@ try{
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(s, 0, 70, Short.MAX_VALUE)
+                .addComponent(status, 0, 70, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -124,7 +125,7 @@ try{
                 .addContainerGap()
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addComponent(s, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(status, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25))
         );
 
@@ -134,16 +135,16 @@ try{
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Card No.");
 
-        card.addActionListener(new java.awt.event.ActionListener() {
+        cardNo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cardActionPerformed(evt);
+                cardNoActionPerformed(evt);
             }
         });
 
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Type");
 
-        t.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MasterCard", "Visa" }));
+        cardType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MasterCard", "Visa" }));
 
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("CVC");
@@ -165,13 +166,13 @@ try{
                 .addGap(88, 88, 88)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(card)
+                        .addComponent(cardNo)
                         .addGap(26, 26, 26))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(v, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(e, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(t, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(validDate, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cvc, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cardType, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap(115, Short.MAX_VALUE))))
         );
         jPanel3Layout.setVerticalGroup(
@@ -180,19 +181,19 @@ try{
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(card, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cardNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(t, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cardType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
                 .addGap(24, 24, 24)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(e, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cvc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(v, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(validDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -230,10 +231,10 @@ try{
                             .addComponent(jLabel3))
                         .addGap(77, 77, 77)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(p, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(payable, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(method, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(i, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton2)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
@@ -258,7 +259,7 @@ try{
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(i, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jButton2)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -266,11 +267,11 @@ try{
                                 .addComponent(jLabel2))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
-                                .addComponent(p, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(payable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(20, 20, 20)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(method, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(25, 25, 25)
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
@@ -282,10 +283,10 @@ try{
         table4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         table4.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null}
+                {null, null, null, null}
             },
             new String [] {
-                "ID", "Payable", "Satus"
+                "ID", "Name", "Payable", "Satus"
             }
         ));
         table4.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -328,13 +329,13 @@ try{
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void methodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_methodActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_methodActionPerformed
 
-    private void cardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cardActionPerformed
+    private void cardNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cardNoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cardActionPerformed
+    }//GEN-LAST:event_cardNoActionPerformed
 
     private void payActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payActionPerformed
  
@@ -342,29 +343,31 @@ try{
     }//GEN-LAST:event_payActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-pay_record obj = new pay_record();
-dispose();
-obj.setVisible(true);// TODO add your handling code here:
+
+        pay_record obj = new pay_record();
+        dispose();
+        obj.setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void payMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_payMouseClicked
-if (card.getText().equals("")) {
+
+        if (cardNo.getText().equals("")) {
            JOptionPane.showMessageDialog( this, "Please enter Card no","Error", JOptionPane.ERROR_MESSAGE);
            return;
             
             }
     
-        if (e.getText().equals("")) {
-           JOptionPane.showMessageDialog( this, "Please enter valid EIIN","Error", JOptionPane.ERROR_MESSAGE);
+        if (cvc.getText().equals("")) {
+           JOptionPane.showMessageDialog( this, "Please enter valid CVC","Error", JOptionPane.ERROR_MESSAGE);
            return;
           
             }
       con= Connect.ConnectDB();
-      String sql= "select * from pay_method where cardno= '" + card.getText() + "' and eiin ='" + e.getText() + "'";
+      String sql= "select * from pay_method where cardno= '" + cardNo.getText() + "' and cvc ='" + cvc.getText() + "'";
       try
       {
-          pst=con.prepareStatement(sql);
-          rs= pst.executeQuery();
+          pst = con.prepareStatement(sql);
+          rs = pst.executeQuery();
           
           
            
@@ -374,16 +377,17 @@ if (card.getText().equals("")) {
             {
                 this.hide();
                 
-             Payment obj = new Payment();
+             Payment obj = new Payment();             
+              
              
-             
-              obj.setVisible(true);
+             obj.setVisible(true);
              String add="Paid";
-                obj.s.setSelectedItem(add);
-                String sql2= "update payrecord set id='"+ i.getText() +"',status='" + "Paid" +"' where Id='" + i.getText() + "'";
-pst=con.prepareStatement(sql2);
-            pst.execute();
-            JOptionPane.showMessageDialog(this,"Successfully Paid","Member Record",JOptionPane.INFORMATION_MESSAGE);
+                obj.status.setSelectedItem(add);
+                String sql2= "update payrecord set id='"+ id.getText() +"',status='" + "Paid" +"' where Id='" + id.getText() + "'";
+            
+                pst=con.prepareStatement(sql2);
+                pst.execute();
+                JOptionPane.showMessageDialog(this,"Successfully Paid","Member Record",JOptionPane.INFORMATION_MESSAGE);           
            
             }
               
@@ -399,7 +403,8 @@ pst=con.prepareStatement(sql2);
     }//GEN-LAST:event_payMouseClicked
 
     private void table4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table4MouseClicked
-try{
+
+        try{
             con=Connect.ConnectDB();
             int row= table4.getSelectedRow();
             String table_click= table4.getModel().getValueAt(row, 0).toString();
@@ -412,13 +417,13 @@ try{
                 dispose();
                 frm.setVisible(true);
                 String add1=rs.getString("Id");
-                frm.i.setText(add1);
+                frm.id.setText(add1);
                 String add2=rs.getString("totalPay");
-                frm.p.setText(add2);
+                frm.payable.setText(add2);
                 
-                String add7=rs.getString("Status");
-                frm.s.setSelectedItem(add7);
-                
+                String add3=rs.getString("Status");
+                frm.status.setSelectedItem(add3);
+                                                        
                 
                 
              
@@ -429,10 +434,14 @@ try{
     }//GEN-LAST:event_table4MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-dispose();
-Payment obj = new Payment();
-obj.setVisible(true);// TODO add your handling code here:
+        dispose();
+        Payment obj = new Payment();
+        obj.setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_idActionPerformed
 
     /**
      * @param args the command line arguments
@@ -470,12 +479,12 @@ obj.setVisible(true);// TODO add your handling code here:
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField card;
-    private javax.swing.JTextField e;
-    public javax.swing.JTextField i;
+    private javax.swing.JTextField cardNo;
+    private javax.swing.JComboBox<String> cardType;
+    private javax.swing.JTextField cvc;
+    public javax.swing.JTextField id;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -488,11 +497,11 @@ obj.setVisible(true);// TODO add your handling code here:
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    public javax.swing.JTextField p;
+    private javax.swing.JComboBox<String> method;
     private javax.swing.JButton pay;
-    public javax.swing.JComboBox<String> s;
-    private javax.swing.JComboBox<String> t;
+    public javax.swing.JTextField payable;
+    public javax.swing.JComboBox<String> status;
     private javax.swing.JTable table4;
-    private javax.swing.JTextField v;
+    private javax.swing.JTextField validDate;
     // End of variables declaration//GEN-END:variables
 }
