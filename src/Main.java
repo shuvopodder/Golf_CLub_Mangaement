@@ -1,3 +1,4 @@
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,9 +12,10 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author DELL
+ * @author Shuvo Podder
  */
 public class Main extends javax.swing.JFrame {
+
     Connection con = null;
     ResultSet rs = null;
     PreparedStatement pst = null;
@@ -23,13 +25,12 @@ public class Main extends javax.swing.JFrame {
      */
     public Main() {
         initComponents();
-        con= Connect.ConnectDB();
-        
+        con = Connect.ConnectDB();
+
         setExtendedState(Main.MAXIMIZED_HORIZ);
         setVisible(true);
         setResizable(false);
-        
-                
+
     }
 
     /**
@@ -461,7 +462,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenu3ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        Members obj  =new Members();
+        Members obj = new Members();
         obj.setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
@@ -482,7 +483,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-        Member_Locker obj  = new Member_Locker();
+        Member_Locker obj = new Member_Locker();
         obj.setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
@@ -501,12 +502,12 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem4StateChanged
 
     private void lessonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lessonActionPerformed
-        MemberLesson obj =new MemberLesson(); 
+        MemberLesson obj = new MemberLesson();
         obj.setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_lessonActionPerformed
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
-        MemberLesson obj  = new MemberLesson();
+        MemberLesson obj = new MemberLesson();
         obj.setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem11ActionPerformed
 
@@ -520,34 +521,34 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_payentActionPerformed
 
     private void professionalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_professionalActionPerformed
-        Professionals obj =new Professionals();
+        Professionals obj = new Professionals();
         obj.setVisible(true);
 // TODO add your handling code here:
     }//GEN-LAST:event_professionalActionPerformed
 
     private void helpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_helpActionPerformed
-        Contact obj =new Contact();
-        obj.setVisible(true) ;  // TODO add your handling code here:
+        Contact obj = new Contact();
+        obj.setVisible(true);  // TODO add your handling code here:
     }//GEN-LAST:event_helpActionPerformed
 
     private void aboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutActionPerformed
-        About obj =new About();
-        obj.setVisible(true) ;         // TODO add your handling code here:
+        About obj = new About();
+        obj.setVisible(true);         // TODO add your handling code here:
     }//GEN-LAST:event_aboutActionPerformed
 
     private void lockerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lockerActionPerformed
-        Member_Locker obj =new Member_Locker();
-        obj.setVisible(true) ;         // TODO add your handling code here:
+        Member_Locker obj = new Member_Locker();
+        obj.setVisible(true);         // TODO add your handling code here:
     }//GEN-LAST:event_lockerActionPerformed
 
     private void membershipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_membershipActionPerformed
-        MembershipType obj =new MembershipType();
-        obj.setVisible(true) ;         // TODO add your handling code here:
+        MembershipType obj = new MembershipType();
+        obj.setVisible(true);         // TODO add your handling code here:
     }//GEN-LAST:event_membershipActionPerformed
 
     private void newMemberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newMemberActionPerformed
-        Members obj =new Members();
-        obj.setVisible(true) ;         // TODO add your handling code here:
+        Members obj = new Members();
+        obj.setVisible(true);         // TODO add your handling code here:
     }//GEN-LAST:event_newMemberActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
@@ -557,14 +558,14 @@ public class Main extends javax.swing.JFrame {
 
     private void searchBarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchBarKeyReleased
 
-        try{
-            
+        try {
+
             String sql = "select * from members where First_Name = ?";
             pst = con.prepareStatement(sql);
-            pst.setString(1,searchBar.getText());
-            rs= pst.executeQuery();
-            if(rs.next()){
-                Members obj =new  Members();
+            pst.setString(1, searchBar.getText());
+            rs = pst.executeQuery();
+            if (rs.next()) {
+                Members obj = new Members();
                 obj.setVisible(true);
                 String add1 = rs.getString("First_Name");
                 obj.fname.setText(add1);
@@ -580,17 +581,15 @@ public class Main extends javax.swing.JFrame {
                 obj.maddress.setText(add6);
                 String add7 = rs.getString("phone");
                 obj.contact.setText(add7);
-        
-                }
-            else{
+
+            } else {
                 String sql2 = "select * from members where id = ?";
                 pst = con.prepareStatement(sql2);
-                pst.setString(1,searchBar.getText());
-                rs= pst.executeQuery();
-                
-    
-                if(rs.next()){
-                    Members obj =new  Members();
+                pst.setString(1, searchBar.getText());
+                rs = pst.executeQuery();
+
+                if (rs.next()) {
+                    Members obj = new Members();
                     obj.setVisible(true);
                     String add1 = rs.getString("First_Name");
                     obj.fname.setText(add1);
@@ -606,12 +605,11 @@ public class Main extends javax.swing.JFrame {
                     obj.maddress.setText(add6);
                     String add7 = rs.getString("phone");
                     obj.contact.setText(add7);
-                }                      
-        
                 }
+
             }
-        catch(Exception e){
-            JOptionPane.showMessageDialog(null,e);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
         }
     }//GEN-LAST:event_searchBarKeyReleased
 

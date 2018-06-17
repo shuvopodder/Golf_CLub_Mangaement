@@ -7,6 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -15,13 +16,14 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author DELL
+ * @author Shuvo Podder
  */
 public class Registration extends javax.swing.JFrame {
 
     Connection conn = null;
     ResultSet rst = null;
     PreparedStatement pst = null;
+
     /**
      * Creates new form Registration
      */
@@ -306,27 +308,25 @@ public class Registration extends javax.swing.JFrame {
     }//GEN-LAST:event_gActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-conn = Connect.ConnectDB();
+        conn = Connect.ConnectDB();
 
-String sql = "Insert into register (fname,lname,phone,address,username,password,email) value(?,?,?,?,?,?,?)";
-try{
-    pst  = conn.prepareStatement(sql);
-    pst.setString (1,f.getText());
-    pst.setString(2,l.getText());
-    pst.setString(3,p.getText());
-    pst.setString(4,add.getText());
-    pst.setString(5,user.getText());
-    pst.setString(6,pass.getText());
-    pst.setString(7,email.getText());
-    pst.execute();
-        JOptionPane.showMessageDialog(null,"Successfull");
+        String sql = "Insert into register (fname,lname,phone,address,username,password,email) value(?,?,?,?,?,?,?)";
+        try {
+            pst = conn.prepareStatement(sql);
+            pst.setString(1, f.getText());
+            pst.setString(2, l.getText());
+            pst.setString(3, p.getText());
+            pst.setString(4, add.getText());
+            pst.setString(5, user.getText());
+            pst.setString(6, pass.getText());
+            pst.setString(7, email.getText());
+            pst.execute();
+            JOptionPane.showMessageDialog(null, "Successfull");
 
-}
-catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"Failed");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Failed");
         }
-    
-    
+
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 

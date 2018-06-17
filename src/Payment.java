@@ -1,3 +1,4 @@
+
 import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,7 +15,7 @@ import net.proteanit.sql.DbUtils;
 
 /**
  *
- * @author DELL
+ * @author Shuvo Podder
  */
 public class Payment extends javax.swing.JFrame {
     
@@ -27,21 +28,21 @@ public class Payment extends javax.swing.JFrame {
      */
      public Payment() {
         initComponents();
-        con= Connect.ConnectDB();
+        con = Connect.ConnectDB();
         Get_Data();
         setLocationRelativeTo(null);
     }
-     private void Get_Data(){
-     
-         String sql = "select id as 'ID',name as 'Name',totalpay as 'Payable',status as 'Status' from payrecord order by id";
-         try{
-         pst=con.prepareStatement(sql);
-         rs= pst.executeQuery();
-         table4.setModel(DbUtils.resultSetToTableModel(rs));
-         }catch(Exception e){
+     private void Get_Data() {
+
+        String sql = "select id as 'ID',name as 'Name',totalpay as 'Payable',status as 'Status' from payrecord order by id";
+        try {
+            pst = con.prepareStatement(sql);
+            rs = pst.executeQuery();
+            table4.setModel(DbUtils.resultSetToTableModel(rs));
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
-          
-}
+
+        }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -352,84 +353,77 @@ public class Payment extends javax.swing.JFrame {
     private void payMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_payMouseClicked
 
         if (cardNo.getText().equals("")) {
-           JOptionPane.showMessageDialog( this, "Please enter Card no","Error", JOptionPane.ERROR_MESSAGE);
-           return;
-            
-            }
-    
+            JOptionPane.showMessageDialog(this, "Please enter Card no", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+
+        }
+
         if (cvc.getText().equals("")) {
-           JOptionPane.showMessageDialog( this, "Please enter valid CVC","Error", JOptionPane.ERROR_MESSAGE);
-           return;
-          
+            JOptionPane.showMessageDialog(this, "Please enter valid CVC", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+
+        }
+        con = Connect.ConnectDB();
+        String sql = "select * from pay_method where cardno= '" + cardNo.getText() + "' and cvc ='" + cvc.getText() + "'";
+        try {
+            pst = con.prepareStatement(sql);
+            rs = pst.executeQuery();
+
+            if (rs.next()) {
+                int P = JOptionPane.showConfirmDialog(null, " Are you sure want to Pay ?", "Confirmation", JOptionPane.YES_NO_OPTION);
+                if (P == 0) {
+                    this.hide();
+                    Payment obj = new Payment();
+                    obj.setVisible(true);
+
+                    String add = "Paid";
+                    obj.status.setSelectedItem(add);
+                    String sql2 = "update payrecord set id='" + id.getText() + "',status='" + "Paid" + "' where Id='" + id.getText() + "'";
+
+                    pst = con.prepareStatement(sql2);
+                    pst.execute();
+                    JOptionPane.showMessageDialog(this, "Successfully Paid", "Member Record", JOptionPane.INFORMATION_MESSAGE);
+
+                }
+
+            } else {
+
+                JOptionPane.showMessageDialog(null, "Payment Failed..Try again !", "Access denied", JOptionPane.ERROR_MESSAGE);
             }
-      con= Connect.ConnectDB();
-      String sql= "select * from pay_method where cardno= '" + cardNo.getText() + "' and cvc ='" + cvc.getText() + "'";
-      try
-      {
-          pst = con.prepareStatement(sql);
-          rs = pst.executeQuery();
-          
-          
-           
-          if (rs.next()){
-              int P = JOptionPane.showConfirmDialog(null," Are you sure want to Pay ?","Confirmation",JOptionPane.YES_NO_OPTION);
-            if (P==0)
-            {
-                this.hide();
-                
-             Payment obj = new Payment();             
-              
-             
-             obj.setVisible(true);
-             String add="Paid";
-                obj.status.setSelectedItem(add);
-                String sql2= "update payrecord set id='"+ id.getText() +"',status='" + "Paid" +"' where Id='" + id.getText() + "'";
-            
-                pst=con.prepareStatement(sql2);
-                pst.execute();
-                JOptionPane.showMessageDialog(this,"Successfully Paid","Member Record",JOptionPane.INFORMATION_MESSAGE);           
-           
-            }
-              
-          }
-          else{
-              
-            JOptionPane.showMessageDialog(null, "Payment Failed..Try again !","Access denied",JOptionPane.ERROR_MESSAGE);
-          }
-      }catch(SQLException | HeadlessException e){
-         JOptionPane.showMessageDialog(null, e); 
-          
-    }            // TODO add your handling code here:
+        } catch (SQLException | HeadlessException e) {
+            JOptionPane.showMessageDialog(null, e);
+
+        }            // TODO add your handling code here:
     }//GEN-LAST:event_payMouseClicked
 
     private void table4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table4MouseClicked
 
-        try{
-            con=Connect.ConnectDB();
-            int row= table4.getSelectedRow();
-            String table_click= table4.getModel().getValueAt(row, 0).toString();
-            String sql= "select * from payrecord where id = '" + table_click + "'";
-            pst=con.prepareStatement(sql);
-            rs=  pst.executeQuery();
-            if(rs.next()){
+        try {
+            con = Connect.ConnectDB();
+            int row = table4.getSelectedRow();
+            String table_click = table4.getModel().getValueAt(row, 0).toString();
+            String sql = "select * from payrecord where id = '" + table_click + "'";
+
+            pst = con.prepareStatement(sql);
+            rs = pst.executeQuery();
+            if (rs.next()) {
                 this.hide();
                 Payment frm = new Payment();
                 dispose();
                 frm.setVisible(true);
-                String add1=rs.getString("Id");
+
+                String add1 = rs.getString("Id");
                 frm.id.setText(add1);
-                String add2=rs.getString("totalPay");
+
+                String add2 = rs.getString("totalPay");
                 frm.payable.setText(add2);
-                
-                String add3=rs.getString("Status");
+
+                String add3 = rs.getString("Status");
                 frm.status.setSelectedItem(add3);
-                                                        
-                
-                
-             
+
             }
-        }catch(Exception ex){
-            JOptionPane.showMessageDialog(this,ex);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex);
         }          // TODO add your handling code here:
     }//GEN-LAST:event_table4MouseClicked
 

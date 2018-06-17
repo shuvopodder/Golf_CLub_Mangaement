@@ -15,10 +15,11 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author DELL
+ * @author Shuvo Podder
  */
 public class MemberLesson extends javax.swing.JFrame {
-    Connection con =null;
+
+    Connection con = null;
     ResultSet rs = null;
     PreparedStatement pst = null;
 
@@ -255,104 +256,102 @@ public class MemberLesson extends javax.swing.JFrame {
     }//GEN-LAST:event_statusActionPerformed
 
     private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
-        try{
-            con=Connect.ConnectDB();
+        try {
+            con = Connect.ConnectDB();
             if (id.getText().equals("")) {
-                JOptionPane.showMessageDialog( this, "Please enter member id","Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Please enter member id", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
 
             }
             if (status.getText().equals("")) {
-                JOptionPane.showMessageDialog( this, "Please enter member status","Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Please enter member status", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
 
             }
             if (dateline.getText().equals("")) {
-                JOptionPane.showMessageDialog( this, "Please enter member dateline date","Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Please enter member dateline date", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
 
             }
 
             if (bdate.getText().equals("")) {
-                JOptionPane.showMessageDialog( this, "Please enter Booking Date","Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Please enter Booking Date", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
             if (lfee.getText().equals("")) {
-                JOptionPane.showMessageDialog( this, "Please enter Lesson Fee","Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Please enter Lesson Fee", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
             Statement stmt;
-            stmt= con.createStatement();
-            String sql1="Select Id from memberlesson where Id= '" + id.getText() + "'";
-            rs=stmt.executeQuery(sql1);
-            if(rs.next()){
-                JOptionPane.showMessageDialog( this, "Member ID already exists","Error", JOptionPane.ERROR_MESSAGE);
+            stmt = con.createStatement();
+            String sql1 = "Select Id from memberlesson where Id= '" + id.getText() + "'";
+            rs = stmt.executeQuery(sql1);
+            if (rs.next()) {
+                JOptionPane.showMessageDialog(this, "Member ID already exists", "Error", JOptionPane.ERROR_MESSAGE);
                 id.setText("");
                 id.requestDefaultFocus();
                 return;
             }
-           
-            String sql= "insert into memberlesson(Id,lessondateline,status,bookingdate,lessonfee)values('"+ id.getText() + "','"+ dateline.getText() + "','"+ status.getText() + "','"+ bdate.getText() + "','"+ lfee.getText() + "')";
 
-            pst=con.prepareStatement(sql);
+            String sql = "insert into memberlesson(Id,lessondateline,status,bookingdate,lessonfee)values('" + id.getText() + "','" + dateline.getText() + "','" + status.getText() + "','" + bdate.getText() + "','" + lfee.getText() + "')";
+
+            pst = con.prepareStatement(sql);
             pst.execute();
-      
-            JOptionPane.showMessageDialog(this,"Successfully saved","Members Lesson",JOptionPane.INFORMATION_MESSAGE);
+
+            JOptionPane.showMessageDialog(this, "Successfully saved", "Members Lesson", JOptionPane.INFORMATION_MESSAGE);
             save.setEnabled(false);
 
-        }catch(HeadlessException | SQLException ex){
-            JOptionPane.showMessageDialog(this,ex);
+        } catch (HeadlessException | SQLException ex) {
+            JOptionPane.showMessageDialog(this, ex);
         }
-        }
+    }
 
-        private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {
-            try{
-                int P = JOptionPane.showConfirmDialog(null," Are you sure want to delete ?","Confirmation",JOptionPane.YES_NO_OPTION);
-                if (P==0)
-                {
-                    con=Connect.ConnectDB();
-                    String sql= "delete from members where Id = '" + id.getText() + "'";
-                    pst=con.prepareStatement(sql);
-                    pst.execute();
-                    JOptionPane.showMessageDialog(this,"Successfully deleted","Record",JOptionPane.INFORMATION_MESSAGE);
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {
+        try {
+            int P = JOptionPane.showConfirmDialog(null, " Are you sure want to delete ?", "Confirmation", JOptionPane.YES_NO_OPTION);
+            if (P == 0) {
+                con = Connect.ConnectDB();
+                String sql = "delete from members where Id = '" + id.getText() + "'";
+                pst = con.prepareStatement(sql);
+                pst.execute();
+                JOptionPane.showMessageDialog(this, "Successfully deleted", "Record", JOptionPane.INFORMATION_MESSAGE);
 
-                }
-            }catch(HeadlessException | SQLException ex){
-                JOptionPane.showMessageDialog(this,ex);
-            }        // TODO add your handling code here:
+            }
+        } catch (HeadlessException | SQLException ex) {
+            JOptionPane.showMessageDialog(this, ex);
+        }        // TODO add your handling code here:
     }//GEN-LAST:event_saveActionPerformed
 
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
-        try{
-            con=Connect.ConnectDB();
-            String sql= "update memberlesson set id='"+ id.getText() +"',status='"+ status.getText()  +"',lessondateline='"+ dateline.getText() + "',bookingdate='"+ bdate.getText() + "',lessonfee='" + lfee.getText()+"' where Id='" + id.getText() + "'";
+        try {
+            con = Connect.ConnectDB();
+            String sql = "update memberlesson set id='" + id.getText() + "',status='" + status.getText() + "',lessondateline='" + dateline.getText() + "',bookingdate='" + bdate.getText() + "',lessonfee='" + lfee.getText() + "' where Id='" + id.getText() + "'";
 
-            pst=con.prepareStatement(sql);
+            pst = con.prepareStatement(sql);
             pst.execute();
-            JOptionPane.showMessageDialog(this,"Successfully updated","Member Record",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Successfully updated", "Member Record", JOptionPane.INFORMATION_MESSAGE);
             update.setEnabled(false);
 
-        }catch(HeadlessException | SQLException ex){
-            JOptionPane.showMessageDialog(this,ex);
+        } catch (HeadlessException | SQLException ex) {
+            JOptionPane.showMessageDialog(this, ex);
         }        // TODO add your handling code here:
     }//GEN-LAST:event_updateActionPerformed
 
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
-        try{
-            int P = JOptionPane.showConfirmDialog(null," Are you sure want to Cancel Lesson ?","Confirmation",JOptionPane.YES_NO_OPTION);
-            if (P==0)
-            {
-                con=Connect.ConnectDB();
-                String sql= "delete from memberlesson where Id = '" + id.getText() + "'";
-                pst=con.prepareStatement(sql);
+        try {
+            int P = JOptionPane.showConfirmDialog(null, " Are you sure want to Cancel Lesson ?", "Confirmation", JOptionPane.YES_NO_OPTION);
+            if (P == 0) {
+                con = Connect.ConnectDB();
+                String sql = "delete from memberlesson where Id = '" + id.getText() + "'";
+                pst = con.prepareStatement(sql);
                 pst.execute();
-                JOptionPane.showMessageDialog(this,"Successfully Cancel","Lesson",JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Successfully Cancel", "Lesson", JOptionPane.INFORMATION_MESSAGE);
 
                 Reset();
             }
-        }catch(HeadlessException | SQLException ex){
-            JOptionPane.showMessageDialog(this,ex);
+        } catch (HeadlessException | SQLException ex) {
+            JOptionPane.showMessageDialog(this, ex);
         }        // TODO add your handling code here:
     }//GEN-LAST:event_deleteActionPerformed
 
@@ -417,15 +416,15 @@ public class MemberLesson extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void Reset() {
-id.setText("");
-    id.setText("");
-    status.setText("");
-    lfee.setText("");
-    dateline.setText("");
-    
-    
-    save.setEnabled(true);
-    update.setEnabled(false);
-    delete.setEnabled(false);
-    id.requestDefaultFocus();    }
+        id.setText("");
+        id.setText("");
+        status.setText("");
+        lfee.setText("");
+        dateline.setText("");
+
+        save.setEnabled(true);
+        update.setEnabled(false);
+        delete.setEnabled(false);
+        id.requestDefaultFocus();
+    }
 }

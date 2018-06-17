@@ -13,9 +13,10 @@ import net.proteanit.sql.DbUtils;
 
 /**
  *
- * @author DELL
+ * @author Shuvo Podder
  */
 public class pay_record extends javax.swing.JFrame {
+
     Connection con = null;
     ResultSet rs = null;
     PreparedStatement pst = null;
@@ -29,17 +30,18 @@ public class pay_record extends javax.swing.JFrame {
         GET_DATA();
         setLocationRelativeTo(null);
     }
-     private void GET_DATA() {
-String sql = "select id as 'ID',totalpay as 'Payable',status as 'Status' from payrecord order by id";
 
-try{
-         pst=con.prepareStatement(sql);
-          rs= pst.executeQuery();
-         jTable3.setModel(DbUtils.resultSetToTableModel(rs));
-         }catch(Exception e){
+    private void GET_DATA() {
+        String sql = "select id as 'ID',totalpay as 'Payable',status as 'Status' from payrecord order by id";
+
+        try {
+            pst = con.prepareStatement(sql);
+            rs = pst.executeQuery();
+            jTable3.setModel(DbUtils.resultSetToTableModel(rs));
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
-          
-}
+
+        }
     }
 
     /**
@@ -92,32 +94,29 @@ try{
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTable3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable3MouseClicked
-try{
-            con=Connect.ConnectDB();
-            int row= jTable3.getSelectedRow();
-            String table_click= jTable3.getModel().getValueAt(row, 0).toString();
-            String sql= "select * from payrecord where id = '" + table_click + "'";
-            pst=con.prepareStatement(sql);
-            rs=  pst.executeQuery();
-            if(rs.next()){
+        try {
+            con = Connect.ConnectDB();
+            int row = jTable3.getSelectedRow();
+            String table_click = jTable3.getModel().getValueAt(row, 0).toString();
+            String sql = "select * from payrecord where id = '" + table_click + "'";
+            pst = con.prepareStatement(sql);
+            rs = pst.executeQuery();
+            if (rs.next()) {
                 this.hide();
                 Payment frm = new Payment();
                 dispose();
                 frm.setVisible(true);
-                String add1=rs.getString("Id");
+                String add1 = rs.getString("Id");
                 frm.id.setText(add1);
-                String add2=rs.getString("totalPay");
+                String add2 = rs.getString("totalPay");
                 frm.payable.setText(add2);
-                
-                String add7=rs.getString("Status");
+
+                String add7 = rs.getString("Status");
                 frm.status.setSelectedItem(add7);
-                
-                
-                
-             
+
             }
-        }catch(Exception ex){
-            JOptionPane.showMessageDialog(this,ex);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex);
         }        // TODO add your handling code here:
     }//GEN-LAST:event_jTable3MouseClicked
 
@@ -161,5 +160,4 @@ try{
     private javax.swing.JTable jTable3;
     // End of variables declaration//GEN-END:variables
 
-   
 }

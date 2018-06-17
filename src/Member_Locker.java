@@ -4,31 +4,42 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ *
+ * @author Shuvo Podder
+ */
 public class Member_Locker extends javax.swing.JFrame {
     Connection con = null;
-    ResultSet rs= null;
-    PreparedStatement pst =null;
+    ResultSet rs = null;
+    PreparedStatement pst = null;
 
     /**
      * Creates new form Member_Locker
      */
     public Member_Locker() {
         initComponents();
-        con= Connect.ConnectDB();
+        con = Connect.ConnectDB();
         Get_Data();
         setLocationRelativeTo(null);
     }
-    private void Get_Data(){
-      String sql="select  LockerNo as 'Locker No.',Id as 'ID',RentRate as 'Rent Amount',RentDate as 'Rent Date',ExpireDate as 'Expire Date',Status as 'Status' from member_locker order by Id";
-      
-      try{
-         pst=con.prepareStatement(sql);
-          rs= pst.executeQuery();
-         jTable2.setModel(DbUtils.resultSetToTableModel(rs));
-         }catch(Exception e){
+
+    private void Get_Data() {
+        String sql = "select  LockerNo as 'Locker No.',Id as 'ID',RentRate as 'Rent Amount',RentDate as 'Rent Date',ExpireDate as 'Expire Date',Status as 'Status' from member_locker order by Id";
+
+        try {
+            pst = con.prepareStatement(sql);
+            rs = pst.executeQuery();
+            jTable2.setModel(DbUtils.resultSetToTableModel(rs));
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
-          
-}
+
+        }
     }
 
     /**
@@ -78,27 +89,27 @@ public class Member_Locker extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
-try{
-            con=Connect.ConnectDB();
-            int row= jTable2.getSelectedRow();
-            String table_click= jTable2.getModel().getValueAt(row, 0).toString();
-            String sql= "select * from member_locker where LockerNo = '" + table_click + "'";
-            pst=con.prepareStatement(sql);
-            rs=  pst.executeQuery();
-            if(rs.next()){
+        try {
+            con = Connect.ConnectDB();
+            int row = jTable2.getSelectedRow();
+            String table_click = jTable2.getModel().getValueAt(row, 0).toString();
+            String sql = "select * from member_locker where LockerNo = '" + table_click + "'";
+            pst = con.prepareStatement(sql);
+            rs = pst.executeQuery();
+            if (rs.next()) {
                 this.hide();
                 Rent frm = new Rent();
                 dispose();
                 frm.setVisible(true);
-                String add1=rs.getString("LockerNo");
+                String add1 = rs.getString("LockerNo");
                 frm.ln.setText(add1);
-                String add2=rs.getString("RentRate");
+                String add2 = rs.getString("RentRate");
                 frm.rr.setText(add2);
 
             }
-        }catch(Exception ex){
-            JOptionPane.showMessageDialog(this,ex);
-        }                
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex);
+        }
     }//GEN-LAST:event_jTable2MouseClicked
 
     /**

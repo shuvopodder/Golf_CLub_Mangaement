@@ -6,7 +6,7 @@
 
 /**
  *
- * @author DELL
+ * @author Shuvo Podder
  */
 public class Contact extends javax.swing.JFrame {
 

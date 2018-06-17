@@ -13,20 +13,20 @@ import net.proteanit.sql.DbUtils;
 
 /**
  *
- * @author DELL
+ * @author Shuvo Podder
  */
 public class MembershipType extends javax.swing.JFrame {
+
     Connection con = null;
-    ResultSet rs= null;
-    PreparedStatement pst=  null;
-    
+    ResultSet rs = null;
+    PreparedStatement pst = null;
 
     /**
      * Creates new form MembershipType
      */
     public MembershipType() {
         initComponents();
-        con= Connect.ConnectDB();
+        con = Connect.ConnectDB();
         Get_Data();
         setLocationRelativeTo(null);
     }
@@ -118,15 +118,15 @@ public class MembershipType extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void Get_Data() {
- String sql="select code as 'Code', Annualfees as 'Annual Fees',description as 'Type' from membership_type order by description";        
-      try{
-         pst=con.prepareStatement(sql);
-          rs= pst.executeQuery();
-         jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-         }catch(Exception e){
+        String sql = "select code as 'Code', Annualfees as 'Annual Fees',description as 'Type' from membership_type order by description";
+        try {
+            pst = con.prepareStatement(sql);
+            rs = pst.executeQuery();
+            jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
-          
-}
+
+        }
 
     }
 }

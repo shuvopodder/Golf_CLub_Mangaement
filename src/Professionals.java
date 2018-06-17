@@ -1,3 +1,4 @@
+
 import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,17 +8,28 @@ import java.sql.Statement;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
 
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ *
+ * @author Shuvo Podder
+ */
 public class Professionals extends javax.swing.JFrame {
-     Connection con = null;
-    ResultSet rs  = null;
-    PreparedStatement pst =null;
+
+    Connection con = null;
+    ResultSet rs = null;
+    PreparedStatement pst = null;
 
     /**
      * Creates new form Professionals
      */
     public Professionals() {
         initComponents();
-        con= Connect.ConnectDB();
+        con = Connect.ConnectDB();
         GET_DATA();
         setLocationRelativeTo(null);
     }
@@ -309,60 +321,60 @@ public class Professionals extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
-try{
-            con=Connect.ConnectDB();
+
+        try {
+            con = Connect.ConnectDB();
             if (pid.getText().equals("")) {
-                JOptionPane.showMessageDialog( this, "Please enter member Pro id","Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Please enter member Pro id", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
 
             }
             if (fname.getText().equals("")) {
-                JOptionPane.showMessageDialog( this, "Please enter member name","Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Please enter member name", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
 
             }
             if (lname.getText().equals("")) {
-                JOptionPane.showMessageDialog( this, "Please enter member Last name","Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Please enter member Last name", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
 
             }
-            
-            
-         
-   Statement stmt;
-       stmt= con.createStatement();
-       String sql1="Select ProId from professionals where ProId= '" + pid.getText() + "'";
-      rs=stmt.executeQuery(sql1);
-      if(rs.next()){
-        JOptionPane.showMessageDialog( this, "Member ID already exists","Error", JOptionPane.ERROR_MESSAGE);
-        pid.setText("");
-        pid.requestDefaultFocus();
-       return;
-      }
-            String sql= "insert into professionals(ProId,ClubId,FirstName,LastName,Gender,Blood,OthersDetails)values('"+pid.getText() + "','"+cid.getText()+"','"+ fname.getText() + "','"+ lname.getText() + "','"+gender.getSelectedItem() +"','"+ blood.getSelectedItem() + "','" + o.getText() + "')";
 
-            pst=con.prepareStatement(sql);
+            Statement stmt;
+            stmt = con.createStatement();
+            String sql1 = "Select ProId from professionals where ProId= '" + pid.getText() + "'";
+            rs = stmt.executeQuery(sql1);
+            if (rs.next()) {
+                JOptionPane.showMessageDialog(this, "Member ID already exists", "Error", JOptionPane.ERROR_MESSAGE);
+                pid.setText("");
+                pid.requestDefaultFocus();
+                return;
+            }
+            String sql = "insert into professionals(ProId,ClubId,FirstName,LastName,Gender,Blood,OthersDetails)values('" + pid.getText() + "','" + cid.getText() + "','" + fname.getText() + "','" + lname.getText() + "','" + gender.getSelectedItem() + "','" + blood.getSelectedItem() + "','" + o.getText() + "')";
+
+            pst = con.prepareStatement(sql);
             pst.execute();
-            JOptionPane.showMessageDialog(this,"Successfully saved","Professionals Record",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Successfully saved", "Professionals Record", JOptionPane.INFORMATION_MESSAGE);
             save.setEnabled(false);
 
-        }catch(HeadlessException | SQLException ex){
-            JOptionPane.showMessageDialog(this,ex);
+        } catch (HeadlessException | SQLException ex) {
+            JOptionPane.showMessageDialog(this, ex);
         }        // TODO add your handling code here:
     }//GEN-LAST:event_saveActionPerformed
 
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
-try{
-            con=Connect.ConnectDB();
-            String sql= "update professionals set LastName='"+ lname.getText() +"',FirstName='"+ fname.getText() + "',Gender='" + gender.getSelectedItem() + "',blood='"+ blood.getSelectedItem() + "' where ProId='" + pid.getText() + "'";
 
-           pst=con.prepareStatement(sql);
+        try {
+            con = Connect.ConnectDB();
+            String sql = "update professionals set LastName='" + lname.getText() + "',FirstName='" + fname.getText() + "',Gender='" + gender.getSelectedItem() + "',blood='" + blood.getSelectedItem() + "' where ProId='" + pid.getText() + "'";
+
+            pst = con.prepareStatement(sql);
             pst.execute();
-            JOptionPane.showMessageDialog(this,"Successfully updated","Member Record",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Successfully updated", "Member Record", JOptionPane.INFORMATION_MESSAGE);
             update.setEnabled(false);
 
-        }catch(HeadlessException | SQLException ex){
-            JOptionPane.showMessageDialog(this,ex);
+        } catch (HeadlessException | SQLException ex) {
+            JOptionPane.showMessageDialog(this, ex);
         }          // TODO add your handling code here:
     }//GEN-LAST:event_updateActionPerformed
 
@@ -375,36 +387,38 @@ try{
     }//GEN-LAST:event_lnameActionPerformed
 
     private void nActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nActionPerformed
-Reset();        // TODO add your handling code here:
+
+        Reset();        // TODO add your handling code here:
     }//GEN-LAST:event_nActionPerformed
 
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
-try{ 
-    if (pid.getText().equals("")) {
-           JOptionPane.showMessageDialog( this, "Please Enter a Valid Pro Id","Error", JOptionPane.ERROR_MESSAGE);
-           return;
-            
+
+        try {
+            if (pid.getText().equals("")) {
+                JOptionPane.showMessageDialog(this, "Please Enter a Valid Pro Id", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+
             }
-            int P = JOptionPane.showConfirmDialog(null," Are you sure want to delete ?","Confirmation",JOptionPane.YES_NO_OPTION);
-            if (P==0)
-            {
-                con=Connect.ConnectDB();
-                String sql= "delete from professionals where proId = '" + pid.getText() + "'";
-                pst=con.prepareStatement(sql);
+            int P = JOptionPane.showConfirmDialog(null, " Are you sure want to delete ?", "Confirmation", JOptionPane.YES_NO_OPTION);
+            if (P == 0) {
+                con = Connect.ConnectDB();
+                String sql = "delete from professionals where proId = '" + pid.getText() + "'";
+                pst = con.prepareStatement(sql);
                 pst.execute();
-                JOptionPane.showMessageDialog(this,"Successfully deleted","Record",JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Successfully deleted", "Record", JOptionPane.INFORMATION_MESSAGE);
 
                 Reset();
             }
-        }catch(HeadlessException | SQLException ex){
-            JOptionPane.showMessageDialog(this,ex);
+        } catch (HeadlessException | SQLException ex) {
+            JOptionPane.showMessageDialog(this, ex);
         }          // TODO add your handling code here:
     }//GEN-LAST:event_deleteActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-dispose();
-Professionals obj = new Professionals();
-obj.setVisible(true);// TODO add your handling code here:
+
+        dispose();
+        Professionals obj = new Professionals();
+        obj.setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -441,18 +455,19 @@ obj.setVisible(true);// TODO add your handling code here:
             }
         });
     }
+
     private void Reset() {
-       pid.setText("");
-    fname.setText("");
-    lname.setText("");
-    
-   
-    blood.setSelectedIndex(-1);
-    gender.setSelectedIndex(-1);
-    save.setEnabled(true);
-    update.setEnabled(false);
-    delete.setEnabled(false);
-   pid.requestDefaultFocus();
+
+        pid.setText("");
+        fname.setText("");
+        lname.setText("");
+
+        blood.setSelectedIndex(-1);
+        gender.setSelectedIndex(-1);
+        save.setEnabled(true);
+        update.setEnabled(false);
+        delete.setEnabled(false);
+        pid.requestDefaultFocus();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -485,13 +500,15 @@ obj.setVisible(true);// TODO add your handling code here:
     // End of variables declaration//GEN-END:variables
 
     private void GET_DATA() {
-String sql = "select proid as 'Pro Id',clubid as 'Club Id',firstname as 'Firstname',gender as 'Gender',blood as 'Blood',othersdetails as 'Details'  from professionals order by proid";
-try{
-         pst=con.prepareStatement(sql);
-          rs= pst.executeQuery();
-         table8.setModel(DbUtils.resultSetToTableModel(rs));
-         }catch(Exception e){
+
+        String sql = "select proid as 'Pro Id',clubid as 'Club Id',firstname as 'Firstname',gender as 'Gender',blood as 'Blood',othersdetails as 'Details'  from professionals order by proid";
+        try {
+            pst = con.prepareStatement(sql);
+            rs = pst.executeQuery();
+            table8.setModel(DbUtils.resultSetToTableModel(rs));
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
-          
-}    }
+
+        }
+    }
 }

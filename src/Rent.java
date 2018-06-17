@@ -1,3 +1,4 @@
+
 import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,6 +8,7 @@ import java.sql.Statement;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
 
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -15,33 +17,36 @@ import net.proteanit.sql.DbUtils;
 
 /**
  *
- * @author DELL
+ * @author Shuvo Podder
  */
 public class Rent extends javax.swing.JFrame {
-Connection con = null;
+
+    Connection con = null;
     ResultSet rs = null;
     PreparedStatement pst = null;
+
     /**
      * Creates new form Rent
      */
     public Rent() {
-        
+
         initComponents();
-        con= Connect.ConnectDB();
+        con = Connect.ConnectDB();
         Get_Data();
         setLocationRelativeTo(null);
     }
-    private void Get_Data() {
-String sql = "select lockerno as 'Locker Id',status as 'Status' from member_locker order by lockerno";
 
-try{
-         pst=con.prepareStatement(sql);
-          rs= pst.executeQuery();
-         ltable.setModel(DbUtils.resultSetToTableModel(rs));
-         }catch(Exception e){
+    private void Get_Data() {
+        String sql = "select lockerno as 'Locker Id',status as 'Status' from member_locker order by lockerno";
+
+        try {
+            pst = con.prepareStatement(sql);
+            rs = pst.executeQuery();
+            ltable.setModel(DbUtils.resultSetToTableModel(rs));
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
-          
-}
+
+        }
     }
 
     /**
@@ -267,115 +272,111 @@ try{
     }//GEN-LAST:event_rtdActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-Member_Locker obj = new Member_Locker();
-obj.setVisible(true);        // TODO add your handling code here:
+        Member_Locker obj = new Member_Locker();
+        obj.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-if (id.getText().equals("")) {
-           JOptionPane.showMessageDialog( this, "Please enter Id","Error", JOptionPane.ERROR_MESSAGE);
-           return;
-            
-            }
-    
-        if (ln.getText().equals("")) {
-           JOptionPane.showMessageDialog( this, "Please enter valid Locker No.","Error", JOptionPane.ERROR_MESSAGE);
-           return;
-          
-            }
-        if (rr.getText().equals("")) {
-           JOptionPane.showMessageDialog( this, "Please enter valid Rent Rate.","Error", JOptionPane.ERROR_MESSAGE);
-           return;
-          
-            }
-        if (rtd.getText().equals("")) {
-           JOptionPane.showMessageDialog( this, "Please enter valid Rent Date.","Error", JOptionPane.ERROR_MESSAGE);
-           return;
-          
-            }
-        if (rd.getText().equals("")) {
-           JOptionPane.showMessageDialog( this, "Please enter valid Date.","Error", JOptionPane.ERROR_MESSAGE);
-           return;
-          
-            }
-      con= Connect.ConnectDB(); 
-      String a = "Rented";
-            String sql= "update member_locker set id='"+ id.getText() +"',rentdate='"+ rr.getText()  +"',expiredate='"+ rtd.getText() +"',status='"+a+ "' where lockerno='" + ln.getText() + "'";
+        if (id.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Please enter Id", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
 
-      try
-      {
-             Statement stmt;
-       stmt= con.createStatement();
-       String sql15="Select lockerno from member_locker where status= '" + "Rented" + "'";
-      rs=stmt.executeQuery(sql15);
-      if(rs.next()){
-        JOptionPane.showMessageDialog( this, "Locker already rented","Error", JOptionPane.ERROR_MESSAGE);
-        id.setText("");
-        id.requestDefaultFocus();
-       return;
-      }
-         pst  = con.prepareStatement(sql);
-    pst.execute();
-           
-            JOptionPane.showMessageDialog(this,"Successfully Rented","Member Locker",JOptionPane.INFORMATION_MESSAGE);
-           
-          
-      }catch(SQLException | HeadlessException e){
-         JOptionPane.showMessageDialog(null, e); 
-          
-    }          // TODO add your handling code here:
+        }
+
+        if (ln.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Please enter valid Locker No.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+
+        }
+        if (rr.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Please enter valid Rent Rate.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+
+        }
+        if (rtd.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Please enter valid Rent Date.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+
+        }
+        if (rd.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Please enter valid Date.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+
+        }
+        con = Connect.ConnectDB();
+        String a = "Rented";
+        String sql = "update member_locker set id='" + id.getText() + "',rentdate='" + rr.getText() + "',expiredate='" + rtd.getText() + "',status='" + a + "' where lockerno='" + ln.getText() + "'";
+
+        try {
+            Statement stmt;
+            stmt = con.createStatement();
+            String sql15 = "Select lockerno from member_locker where status= '" + "Rented" + "'";
+            rs = stmt.executeQuery(sql15);
+            if (rs.next()) {
+                JOptionPane.showMessageDialog(this, "Locker already rented", "Error", JOptionPane.ERROR_MESSAGE);
+                id.setText("");
+                id.requestDefaultFocus();
+                return;
+            }
+            pst = con.prepareStatement(sql);
+            pst.execute();
+
+            JOptionPane.showMessageDialog(this, "Successfully Rented", "Member Locker", JOptionPane.INFORMATION_MESSAGE);
+
+        } catch (SQLException | HeadlessException e) {
+            JOptionPane.showMessageDialog(null, e);
+
+        }          // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
- con= Connect.ConnectDB();
+        con = Connect.ConnectDB();
 
-String sql= "update member_locker set rentdate='"+ " " +"',expiredate='"+ " " + "',id='"+ " "  +"',status='"+ "Free"  +"' where lockerno='" + ln.getText()+ "'";
+        String sql = "update member_locker set rentdate='" + " " + "',expiredate='" + " " + "',id='" + " " + "',status='" + "Free" + "' where lockerno='" + ln.getText() + "'";
 
-      try
-      {
-          int P = JOptionPane.showConfirmDialog(null," Are you sure want to Free this Locker ?","Confirmation",JOptionPane.YES_NO_OPTION);
-            if (P==0)
-            {
-                
-                con=Connect.ConnectDB();
-                pst=con.prepareStatement(sql);
+        try {
+            int P = JOptionPane.showConfirmDialog(null, " Are you sure want to Free this Locker ?", "Confirmation", JOptionPane.YES_NO_OPTION);
+            if (P == 0) {
+
+                con = Connect.ConnectDB();
+                pst = con.prepareStatement(sql);
                 pst.execute();
-                JOptionPane.showMessageDialog(this,"Successfully Free Locker","Record",JOptionPane.INFORMATION_MESSAGE);
-            }   
-      }catch(SQLException | HeadlessException e){
-         JOptionPane.showMessageDialog(null, e); 
-          
-    }             // TODO add your handling code here:
+                JOptionPane.showMessageDialog(this, "Successfully Free Locker", "Record", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (SQLException | HeadlessException e) {
+            JOptionPane.showMessageDialog(null, e);
+
+        }             // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void ltableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ltableMouseClicked
-try{
-            con=Connect.ConnectDB();
-            int row= ltable.getSelectedRow();
-            String table_click= ltable.getModel().getValueAt(row, 0).toString();
-            String sql= "select * from member_locker where LockerNo = '" + table_click + "'";
-            pst=con.prepareStatement(sql);
-            rs=  pst.executeQuery();
-            if(rs.next()){
+        try {
+            con = Connect.ConnectDB();
+            int row = ltable.getSelectedRow();
+            String table_click = ltable.getModel().getValueAt(row, 0).toString();
+            String sql = "select * from member_locker where LockerNo = '" + table_click + "'";
+            pst = con.prepareStatement(sql);
+            rs = pst.executeQuery();
+            if (rs.next()) {
                 this.hide();
                 Rent frm = new Rent();
                 dispose();
                 frm.setVisible(true);
-                String add1=rs.getString("LockerNo");
+                String add1 = rs.getString("LockerNo");
                 frm.ln.setText(add1);
-                String add2=rs.getString("RentRate");
+                String add2 = rs.getString("RentRate");
                 frm.rr.setText(add2);
 
             }
-        }catch(Exception ex){
-            JOptionPane.showMessageDialog(this,ex);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex);
         }          // TODO add your handling code here:
     }//GEN-LAST:event_ltableMouseClicked
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-dispose();
-Rent obj = new Rent();
-obj.setVisible(true);// TODO add your handling code here:
+        dispose();
+        Rent obj = new Rent();
+        obj.setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
     /**

@@ -13,34 +13,35 @@ import net.proteanit.sql.DbUtils;
 
 /**
  *
- * @author DELL
+ * @author Shuvo Podder
  */
 public class memberrecord extends javax.swing.JFrame {
-    Connection con=null;
-ResultSet rs=null;
-PreparedStatement pst=null;
+
+    Connection con = null;
+    ResultSet rs = null;
+    PreparedStatement pst = null;
 
     /**
      * Creates new form memberrecord
      */
     public memberrecord() {
         initComponents();
-        con= Connect.ConnectDB();
+        con = Connect.ConnectDB();
         Get_Data();
         setLocationRelativeTo(null);
     }
-     private void Get_Data(){
-      String sql="select Id as 'ID', First_Name as 'First Name',Last_Name as 'Last Name',Address,Phone as 'Contact No',Email as 'Email ID',blood as 'Blood Group',date as 'Joining Date' from members order by First_Name";        
-      try{
-         pst=con.prepareStatement(sql);
-          rs= pst.executeQuery();
-         jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-         }catch(Exception e){
+
+    private void Get_Data() {
+        String sql = "select Id as 'ID', First_Name as 'First Name',Last_Name as 'Last Name',Address,Phone as 'Contact No',Email as 'Email ID',blood as 'Blood Group',date as 'Joining Date' from members order by First_Name";
+        try {
+            pst = con.prepareStatement(sql);
+            rs = pst.executeQuery();
+            jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
-          
-}
+
+        }
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -91,42 +92,42 @@ PreparedStatement pst=null;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-try{
-            con=Connect.ConnectDB();
-            int row= jTable1.getSelectedRow();
-            String table_click= jTable1.getModel().getValueAt(row, 0).toString();
-            String sql= "select * from members where id = '" + table_click + "'";
-            pst=con.prepareStatement(sql);
-            rs=  pst.executeQuery();
-            if(rs.next()){
+        try {
+            con = Connect.ConnectDB();
+            int row = jTable1.getSelectedRow();
+            String table_click = jTable1.getModel().getValueAt(row, 0).toString();
+            String sql = "select * from members where id = '" + table_click + "'";
+            pst = con.prepareStatement(sql);
+            rs = pst.executeQuery();
+            if (rs.next()) {
                 this.hide();
                 Members frm = new Members();
                 frm.setVisible(true);
-                String add1=rs.getString("Id");
+                String add1 = rs.getString("Id");
                 frm.id.setText(add1);
-                String add2=rs.getString("First_Name");
+                String add2 = rs.getString("First_Name");
                 frm.fname.setText(add2);
-                String add3=rs.getString("Last_Name");
+                String add3 = rs.getString("Last_Name");
                 frm.lname.setText(add3);
-                String add5=rs.getString("Email");
+                String add5 = rs.getString("Email");
                 frm.email.setText(add5);
-                String add6=rs.getString("blood");
+                String add6 = rs.getString("blood");
                 frm.blood.setSelectedItem(add6);
-                String add7=rs.getString("gender");
+                String add7 = rs.getString("gender");
                 frm.gender.setSelectedItem(add7);
-                String add8=rs.getString("date");
+                String add8 = rs.getString("date");
                 frm.mdate.setText(add8);
-                String add9=rs.getString("Address");
+                String add9 = rs.getString("Address");
                 frm.maddress.setText(add9);
-                String add10=rs.getString("Phone");
+                String add10 = rs.getString("Phone");
                 frm.contact.setText(add10);
                 frm.update.setEnabled(true);
                 frm.delete.setEnabled(true);
                 frm.save.setEnabled(false);
-             
+
             }
-        }catch(Exception ex){
-            JOptionPane.showMessageDialog(this,ex);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex);
         }        // TODO add your handling code here:
     }//GEN-LAST:event_jTable1MouseClicked
 

@@ -15,13 +15,13 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author DELL
+ * @author Shuvo Podder
  */
 public class Members extends javax.swing.JFrame {
+
     Connection con = null;
-    ResultSet rs  = null;
-    PreparedStatement pst =null;
-    
+    ResultSet rs = null;
+    PreparedStatement pst = null;
 
     /**
      * Creates new form Members
@@ -357,17 +357,17 @@ public class Members extends javax.swing.JFrame {
     }//GEN-LAST:event_othersActionPerformed
 
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
-        try{
-            con=Connect.ConnectDB();
-            String sql= "update members set Last_Name='"+ lname.getText() +"',First_Name='"+ fname.getText()  +"',Email='"+ email.getText() + "',Phone='"+ contact.getText() + "',mtype='" + type.getSelectedItem()+ "',gender='" + gender.getSelectedItem() + "',blood='"+ blood.getSelectedItem() + "',date='" + mdate.getText() + "',Address='" + maddress.getText() + "' where Id='" + id.getText() + "'";
+        try {
+            con = Connect.ConnectDB();
+            String sql = "update members set Last_Name='" + lname.getText() + "',First_Name='" + fname.getText() + "',Email='" + email.getText() + "',Phone='" + contact.getText() + "',mtype='" + type.getSelectedItem() + "',gender='" + gender.getSelectedItem() + "',blood='" + blood.getSelectedItem() + "',date='" + mdate.getText() + "',Address='" + maddress.getText() + "' where Id='" + id.getText() + "'";
 
-            pst=con.prepareStatement(sql);
+            pst = con.prepareStatement(sql);
             pst.execute();
-            JOptionPane.showMessageDialog(this,"Successfully updated","Member Record",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Successfully updated", "Member Record", JOptionPane.INFORMATION_MESSAGE);
             update.setEnabled(false);
 
-        }catch(HeadlessException | SQLException ex){
-            JOptionPane.showMessageDialog(this,ex);
+        } catch (HeadlessException | SQLException ex) {
+            JOptionPane.showMessageDialog(this, ex);
         }        // TODO add your handling code here:
     }//GEN-LAST:event_updateActionPerformed
 
@@ -376,114 +376,106 @@ public class Members extends javax.swing.JFrame {
     }//GEN-LAST:event_createActionPerformed
 
     private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
- try{
-            con=Connect.ConnectDB();
+        try {
+            con = Connect.ConnectDB();
             if (id.getText().equals("")) {
-                JOptionPane.showMessageDialog( this, "Please enter member id","Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Please enter member id", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
 
             }
             if (fname.getText().equals("")) {
-                JOptionPane.showMessageDialog( this, "Please enter member name","Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Please enter member name", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
 
             }
             if (lname.getText().equals("")) {
-                JOptionPane.showMessageDialog( this, "Please enter member Last name","Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Please enter member Last name", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
 
             }
-            
+
             if (maddress.getText().equals("")) {
-                JOptionPane.showMessageDialog( this, "Please enter address","Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Please enter address", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-           if (contact.getText().equals("")) {
-                JOptionPane.showMessageDialog( this, "Please enter contact no.","Error", JOptionPane.ERROR_MESSAGE);
+            if (contact.getText().equals("")) {
+                JOptionPane.showMessageDialog(this, "Please enter contact no.", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-         
-           Statement stmt;
-           stmt= con.createStatement();
-           String sql="Select Id from members where Id= '" + id.getText() + "'";
-           rs=stmt.executeQuery(sql);
-           
-           if(rs.next()){
-               JOptionPane.showMessageDialog( this, "Member ID already exists","Error", JOptionPane.ERROR_MESSAGE);
-               id.setText("");
-               id.requestDefaultFocus();
-               return;
-      }
-      int a ;
-      if(type.getSelectedItem()=="Premium")
-      {
-          a=500000;
-      }
-      else if(type.getSelectedItem()=="Gold")
-      {
-          a=100000;
-      }
-      else
-      {
-          a=20000;
-      }
-      
-            String sql2= "insert into members(Id,First_Name,Last_Name,Email,Phone,nid,gender,blood,date,Address)values('"+ id.getText() + "','"+ fname.getText() + "','"+ lname.getText() + "','"+ email.getText() + "','"+ contact.getText() + "','" +mnid.getText()+"','"+ gender.getSelectedItem() + "','"+ blood.getSelectedItem() + "','" + mdate.getText() + "','" + maddress.getText() + "')";
 
-            pst=con.prepareStatement(sql2);
-            pst.execute();
-            String sql3= "insert into payrecord(Id,totalpay)values('"+ id.getText() + "','"+ a + "')";
+            Statement stmt;
+            stmt = con.createStatement();
+            String sql = "Select Id from members where Id= '" + id.getText() + "'";
+            rs = stmt.executeQuery(sql);
 
-            pst=con.prepareStatement(sql3);
+            if (rs.next()) {
+                JOptionPane.showMessageDialog(this, "Member ID already exists", "Error", JOptionPane.ERROR_MESSAGE);
+                id.setText("");
+                id.requestDefaultFocus();
+                return;
+            }
+            int a;
+            if (type.getSelectedItem() == "Premium") {
+                a = 500000;
+            } else if (type.getSelectedItem() == "Gold") {
+                a = 100000;
+            } else {
+                a = 20000;
+            }
+
+            String sql2 = "insert into members(Id,First_Name,Last_Name,Email,Phone,nid,gender,blood,date,Address)values('" + id.getText() + "','" + fname.getText() + "','" + lname.getText() + "','" + email.getText() + "','" + contact.getText() + "','" + mnid.getText() + "','" + gender.getSelectedItem() + "','" + blood.getSelectedItem() + "','" + mdate.getText() + "','" + maddress.getText() + "')";
+
+            pst = con.prepareStatement(sql2);
             pst.execute();
-            JOptionPane.showMessageDialog(this,"Successfully saved","Members Record",JOptionPane.INFORMATION_MESSAGE);
+            String sql3 = "insert into payrecord(Id,totalpay)values('" + id.getText() + "','" + a + "')";
+
+            pst = con.prepareStatement(sql3);
+            pst.execute();
+            JOptionPane.showMessageDialog(this, "Successfully saved", "Members Record", JOptionPane.INFORMATION_MESSAGE);
             save.setEnabled(false);
 
-        }catch(HeadlessException | SQLException ex){
-            JOptionPane.showMessageDialog(this,ex);
+        } catch (HeadlessException | SQLException ex) {
+            JOptionPane.showMessageDialog(this, ex);
         }
-    }                                       
+    }
 
-    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {                                          
-        try{ 
-            int P = JOptionPane.showConfirmDialog(null," Are you sure want to delete ?","Confirmation",JOptionPane.YES_NO_OPTION);
-            if (P==0)
-            {
-                con=Connect.ConnectDB();
-                String sql= "delete from members where Id = '" + id.getText() + "'";
-                pst=con.prepareStatement(sql);
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {
+        try {
+            int P = JOptionPane.showConfirmDialog(null, " Are you sure want to delete ?", "Confirmation", JOptionPane.YES_NO_OPTION);
+            if (P == 0) {
+                con = Connect.ConnectDB();
+                String sql = "delete from members where Id = '" + id.getText() + "'";
+                pst = con.prepareStatement(sql);
                 pst.execute();
-                JOptionPane.showMessageDialog(this,"Successfully deleted","Record",JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Successfully deleted", "Record", JOptionPane.INFORMATION_MESSAGE);
 
-                
             }
-        }catch(HeadlessException | SQLException ex){
-            JOptionPane.showMessageDialog(this,ex);
+        } catch (HeadlessException | SQLException ex) {
+            JOptionPane.showMessageDialog(this, ex);
         }        // TODO add your handling code here:
     }//GEN-LAST:event_saveActionPerformed
 
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
-try{ 
-            int P = JOptionPane.showConfirmDialog(null," Are you sure want to delete ?","Confirmation",JOptionPane.YES_NO_OPTION);
-            if (P==0)
-            {
-                con=Connect.ConnectDB();
-                String sql= "delete from members where Id = '" + id.getText() + "'";
-                pst=con.prepareStatement(sql);
+        try {
+            int P = JOptionPane.showConfirmDialog(null, " Are you sure want to delete ?", "Confirmation", JOptionPane.YES_NO_OPTION);
+            if (P == 0) {
+                con = Connect.ConnectDB();
+                String sql = "delete from members where Id = '" + id.getText() + "'";
+                pst = con.prepareStatement(sql);
                 pst.execute();
-                JOptionPane.showMessageDialog(this,"Successfully deleted","Record",JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Successfully deleted", "Record", JOptionPane.INFORMATION_MESSAGE);
 
                 Reset();
             }
-        }catch(HeadlessException | SQLException ex){
-            JOptionPane.showMessageDialog(this,ex);
+        } catch (HeadlessException | SQLException ex) {
+            JOptionPane.showMessageDialog(this, ex);
         }        // TODO add your handling code here:
     }//GEN-LAST:event_deleteActionPerformed
 
     private void getActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getActionPerformed
-     this.hide();
-     memberrecord frm = new memberrecord();
-     frm.setVisible(true);        // TODO add your handling code here:
+        this.hide();
+        memberrecord frm = new memberrecord();
+        frm.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_getActionPerformed
 
     private void lnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lnameActionPerformed
@@ -566,8 +558,8 @@ try{
         fname.setText("");
         lname.setText("");
         contact.setText("");
-        maddress.setText("");    
-        email.setText("");    
+        maddress.setText("");
+        email.setText("");
         mdate.setText("");
         blood.setSelectedIndex(-1);
         gender.setSelectedIndex(-1);

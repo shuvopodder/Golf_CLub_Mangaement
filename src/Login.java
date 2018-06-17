@@ -14,9 +14,10 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author DELL
+ * @author Shuvo Podder
  */
 public class Login extends javax.swing.JFrame {
+
     Connection con = null;
     ResultSet rs = null;
     PreparedStatement pst = null;
@@ -187,7 +188,7 @@ public class Login extends javax.swing.JFrame {
 
     private void registerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registerMouseClicked
 
-        Registration obj=new Registration();
+        Registration obj = new Registration();
         dispose();
         obj.setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_registerMouseClicked
@@ -195,35 +196,34 @@ public class Login extends javax.swing.JFrame {
     private void loginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginMouseClicked
 
         if (user.getText().equals("")) {
-           JOptionPane.showMessageDialog( this, "Please enter user name","Error", JOptionPane.ERROR_MESSAGE);
-           return;
-            
-            }
-        String Password= String.valueOf(password.getPassword());
+            JOptionPane.showMessageDialog(this, "Please enter user name", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+
+        }
+        String Password = String.valueOf(password.getPassword());
         if (Password.equals("")) {
-           JOptionPane.showMessageDialog( this, "Please enter password","Error", JOptionPane.ERROR_MESSAGE);
-           return;
-          
+            JOptionPane.showMessageDialog(this, "Please enter password", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+
+        }
+        con = Connect.ConnectDB();
+        String sql = "select * from login where username= '" + user.getText() + "' and password ='" + password.getText() + "'";
+
+        try {
+            pst = con.prepareStatement(sql);
+            rs = pst.executeQuery();
+            if (rs.next()) {
+                this.hide();
+                Main frm = new Main();
+                frm.setVisible(true);
+            } else {
+
+                JOptionPane.showMessageDialog(null, "Login Failed...Try again !", "Access denied", JOptionPane.ERROR_MESSAGE);
             }
-        con= Connect.ConnectDB();
-        String sql= "select * from login where username= '" + user.getText() + "' and password ='" + password.getText() + "'";
-        
-        try{
-          pst=con.prepareStatement(sql);
-          rs= pst.executeQuery();
-          if (rs.next()){
-             this.hide();
-             Main frm=new Main();
-             frm.setVisible(true);
-          }
-          else{
-              
-            JOptionPane.showMessageDialog(null, "Login Failed..Try again !","Access denied",JOptionPane.ERROR_MESSAGE);
-          }
-      }catch(SQLException | HeadlessException e){
-         JOptionPane.showMessageDialog(null, e); 
-          
-    }              // TODO add your handling code here:
+        } catch (SQLException | HeadlessException e) {
+            JOptionPane.showMessageDialog(null, e);
+
+        }              // TODO add your handling code here:
     }//GEN-LAST:event_loginMouseClicked
 
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
