@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
 
@@ -30,6 +32,7 @@ public class Rent extends javax.swing.JFrame {
     public Rent() {
 
         initComponents();
+        showDate();
         con = Connect.ConnectDB();
         Get_Data();
         setLocationRelativeTo(null);
@@ -434,4 +437,10 @@ public class Rent extends javax.swing.JFrame {
     public javax.swing.JTextField rr;
     private javax.swing.JTextField rtd;
     // End of variables declaration//GEN-END:variables
+
+   private void showDate() {
+        Date d = new Date();
+        SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
+        rd.setText(f.format(d));//To change body of generated methods, choose Tools | Templates.
+    }
 }

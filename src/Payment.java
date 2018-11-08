@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
 
@@ -28,6 +30,7 @@ public class Payment extends javax.swing.JFrame {
      */
      public Payment() {
         initComponents();
+        showDate();
         con = Connect.ConnectDB();
         Get_Data();
         setLocationRelativeTo(null);
@@ -74,6 +77,7 @@ public class Payment extends javax.swing.JFrame {
         validDate = new javax.swing.JTextField();
         pay = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        date = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         table4 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
@@ -218,6 +222,9 @@ public class Payment extends javax.swing.JFrame {
             }
         });
 
+        date.setForeground(new java.awt.Color(255, 255, 255));
+        date.setText("Date");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -249,11 +256,17 @@ public class Payment extends javax.swing.JFrame {
                         .addComponent(pay, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(117, 117, 117)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(date)
+                .addGap(36, 36, 36))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(37, 37, 37)
+                .addGap(12, 12, 12)
+                .addComponent(date)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -476,6 +489,7 @@ public class Payment extends javax.swing.JFrame {
     private javax.swing.JTextField cardNo;
     private javax.swing.JComboBox<String> cardType;
     private javax.swing.JTextField cvc;
+    private javax.swing.JLabel date;
     public javax.swing.JTextField id;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -498,4 +512,10 @@ public class Payment extends javax.swing.JFrame {
     private javax.swing.JTable table4;
     private javax.swing.JTextField validDate;
     // End of variables declaration//GEN-END:variables
+
+    private void showDate() {
+        Date d = new Date();
+        SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
+        date.setText(f.format(d)); 
+    }
 }
