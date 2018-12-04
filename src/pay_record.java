@@ -32,7 +32,7 @@ public class pay_record extends javax.swing.JFrame {
     }
 
     private void GET_DATA() {
-        String sql = "select id as 'ID',totalpay as 'Payable',status as 'Status' from payrecord order by id";
+        String sql = "select id as 'ID',name as 'Name',totalpay as 'Payable',status as 'Status' from payrecord order by id";
 
         try {
             pst = con.prepareStatement(sql);
@@ -112,7 +112,7 @@ public class pay_record extends javax.swing.JFrame {
                 frm.payable.setText(add2);
 
                 String add7 = rs.getString("Status");
-                frm.status.setSelectedItem(add7);
+                frm.status.setText(add7);
 
             }
         } catch (Exception ex) {

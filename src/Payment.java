@@ -65,7 +65,7 @@ public class Payment extends javax.swing.JFrame {
         payable = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        status = new javax.swing.JComboBox<>();
+        status = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         cardNo = new javax.swing.JTextField();
@@ -112,29 +112,29 @@ public class Payment extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Status");
 
-        status.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Due", "Paid" }));
+        status.setBackground(new java.awt.Color(0, 0, 0));
+        status.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        status.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(jLabel4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(status, 0, 70, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(29, 29, 29)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addComponent(status))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addComponent(status, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
+                .addGap(30, 30, 30)
+                .addComponent(status)
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         jPanel3.setBackground(new java.awt.Color(0, 0, 0));
@@ -276,7 +276,7 @@ public class Payment extends javax.swing.JFrame {
                                 .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton2)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(23, 23, 23)
@@ -354,11 +354,14 @@ public class Payment extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(338, 338, 338)
+                        .addComponent(jButton1)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -421,7 +424,7 @@ public class Payment extends javax.swing.JFrame {
                     obj.setVisible(true);
 
                     String add = "Paid";
-                    obj.status.setSelectedItem(add);
+                    obj.status.setText(add);
                     String sql2 = "update payrecord set id='" + id.getText() + "',status='" + "Paid" + "' where Id='" + id.getText() + "'";
 
                     pst = con.prepareStatement(sql2);
@@ -463,7 +466,7 @@ public class Payment extends javax.swing.JFrame {
                 frm.payable.setText(add2);
 
                 String add3 = rs.getString("Status");
-                frm.status.setSelectedItem(add3);
+                frm.status.setText(add3);
 
             }
         } catch (Exception ex) {
@@ -545,7 +548,7 @@ public class Payment extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> method;
     private javax.swing.JButton pay;
     public javax.swing.JTextField payable;
-    public javax.swing.JComboBox<String> status;
+    public javax.swing.JLabel status;
     private javax.swing.JTable table4;
     private javax.swing.JTextField validDate;
     private javax.swing.JTextField validDate1;

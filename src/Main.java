@@ -537,7 +537,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_aboutActionPerformed
 
     private void lockerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lockerActionPerformed
-        Member_Locker obj = new Member_Locker();
+        Rent obj = new Rent();
         obj.setVisible(true);         // TODO add your handling code here:
     }//GEN-LAST:event_lockerActionPerformed
 
